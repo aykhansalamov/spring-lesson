@@ -22,7 +22,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/moderator/**").hasRole("MODERATOR")
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())
@@ -40,7 +42,13 @@ public class SecurityConfig {
                 .password(passwordEncoder().encode("1234"))
                 .roles("ADMIN")
                 .build();
-        return new InMemoryUserDetailsManager(admin);
+
+        UserDetails moderator = User.builder()
+                .username("moderator")
+                .password(passwordEncoder().encode("1111"))
+                .roles("MODERATOR")
+                .build();
+        return new InMemoryUserDetailsManager(admin, moderator);
     }
 
 
