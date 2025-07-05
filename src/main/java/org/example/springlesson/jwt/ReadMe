@@ -1,0 +1,14 @@
+JWT (JSON Web Token)  -  BASE64
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.               - header -algoritm: imza uchun istifade olunan  -type: token tipi (JWT)
+eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFETUlOIn0.    - payload -username: "admin", - role: "ADMIN", -exp date:(tokenin bitme vaxti)
+H2sfvdLzQZVK5zvUPmNwK_KAiK7z0WBQkoFqgjdLTQo         - signature -header+payload birleshdirib kodlashdirir. (backend bunu yoxlayir)
+
+-----------------------------------------------------------------------------------------------------
+
+2 ferqli user yaradin.
+
+1-cinin rolu "ADMIN"
+2-cinin rolu "MODERATOR" olsun
+
+Her ikisi ile login olub, novbeti api-da  cari(hazirki)  tarix ve saati chap olunsun
